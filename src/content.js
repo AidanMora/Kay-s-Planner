@@ -1,6 +1,6 @@
 console.log("Kay's Planner loaded.");
 
-// Optional dev banner (keep if you want)
+// Optional dev banner
 const banner = document.createElement("div");
 banner.textContent = "Kay's Planner Active";
 banner.style.position = "fixed";
@@ -11,95 +11,146 @@ banner.style.padding = "8px";
 banner.style.zIndex = "99999";
 document.body.appendChild(banner);
 
-// Prevent injecting twice if Google Calendar re-renders
+// Prevent injecting twice
 if (!document.getElementById("kays-launcher-btn")) {
-    // Launcher button (always available)
+
     const launcherBtn = document.createElement("button");
     launcherBtn.id = "kays-launcher-btn";
     launcherBtn.textContent = "Kay's Planner";
     document.body.appendChild(launcherBtn);
 
     const openPlanner = () => {
-        // If already open, don't recreate
+
         if (document.getElementById("kays-overlay")) return;
 
         const overlay = document.createElement("div");
         overlay.id = "kays-overlay";
 
         overlay.innerHTML = `
-      <div id="kays-planner-popup" role="dialog" aria-modal="true">
+      <div id="kays-planner-popup" role="dialog">
         <div id="kays-planner-header">
-          <h2 id="kays-planner-title">Kay’s Planner</h2>
-          <button id="kays-planner-close" aria-label="Close">✕</button>
+          <h2>Kay’s Planner</h2>
+          <button id="kays-planner-close">✕</button>
         </div>
 
         <div id="kays-planner-body">
-          <div id="kays-input-row">
-            <input id="kays-task-input" type="text" placeholder="Add a task…" />
-            <button id="kays-add-btn">Add</button>
+          <div id="kays-nav-row">
+            <button id="kays-viewTasks-btn">View All</button>
+            <button id="kays-taskCreation-btn">Create</button>
           </div>
 
-          <ul id="kays-task-list"></ul>
+          <div id="kays-view"></div>
         </div>
       </div>
     `;
 
         document.body.appendChild(overlay);
+        const view = document.getElementById("kays-view");
+
+        const showHomeView = () => {
+            view.innerHTML = `
+        <div style="margin-top:12px; color:white;">
+          Choose an option above.
+        </div>
+      `;
+        };
+
+        const showCreateView = () => {
+            view.innerHTML = `
+        <h3 class="kays-section-title">Create Task</h3>
+        <input id="newTitle" placeholder="Task title" />
+        <div style="margin-top:10px; display:flex; gap:8px;">
+          <button id="saveTaskBtn">Save</button>
+          <button id="backBtn">Back</button>
+        </div>
+      `;
+
+            document.getElementById("backBtn").addEventListener("click", showHomeView);
+
+            document.getElementById("saveTaskBtn").addEventListener("click", () => {
+                const title = document.getElementById("newTitle").value.trim();
+                if (!title) return;
+
+                console.log("Saving:", title);
+                showHomeView();
+            });
+        };
+
+        // ✅ DROP-IN FIX: repaired showViewAll() (your version had stray HTML outside the template string)
+        const showViewAll = () => {
+            view.innerHTML = `
+        <h3 class="kays-section-title">All Tasks</h3>
+
+        <ul id="kays-task-list">
+          <li class="kays-task-item">
+            <div class="kays-task-left">
+              <input class="kays-task-checkbox" type="checkbox" />
+              <span class="kays-task-title">Example Task 1</span>
+            </div>
+            <button class="kays-delete-btn" type="button" aria-label="Delete">✕</button>
+          </li>
+
+          <li class="kays-task-item">
+            <div class="kays-task-left">
+              <input class="kays-task-checkbox" type="checkbox" />
+              <span class="kays-task-title">Example Task 2</span>
+            </div>
+            <button class="kays-delete-btn" type="button" aria-label="Delete">✕</button>
+          </li>
+        </ul>
+
+        <div class="kays-footer-row">
+          <button id="backBtn" class="kays-secondary-btn" type="button">Back</button>
+        </div>
+      `;
+
+            // wire delete buttons
+            document.querySelectorAll(".kays-delete-btn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    btn.closest(".kays-task-item")?.remove();
+                });
+            });
+
+            document.getElementById("backBtn").addEventListener("click", showHomeView);
+        };
+
+        document.getElementById("kays-taskCreation-btn").addEventListener("click", showCreateView);
+        document.getElementById("kays-viewTasks-btn").addEventListener("click", showViewAll);
+
+        showHomeView();
 
         const popup = document.getElementById("kays-planner-popup");
         const header = document.getElementById("kays-planner-header");
 
-        // Center it once (exact centering without CSS hacks)
-        const centerPopup = () => {
-            const rect = popup.getBoundingClientRect();
-            popup.style.left = `${(window.innerWidth - rect.width) / 2}px`;
-            popup.style.top = `${(window.innerHeight - rect.height) / 2}px`;
-            popup.style.transform = "none";
-        };
-        centerPopup();
+        // Center popup
+        const rect = popup.getBoundingClientRect();
+        popup.style.position = "fixed";
+        popup.style.left = `${(window.innerWidth - rect.width) / 2}px`;
+        popup.style.top = `${(window.innerHeight - rect.height) / 2}px`;
+        popup.style.transform = "none";
 
-        // Drag logic + prevent "click outside to close" from firing after drag
+        // DRAG & DROP
         let isDragging = false;
-        let didDrag = false;
-
-        let startX = 0, startY = 0;
-        let startLeft = 0, startTop = 0;
+        let offsetX = 0;
+        let offsetY = 0;
 
         header.addEventListener("mousedown", (e) => {
-            // Don't start a drag when clicking the close button
-            if (e.target && e.target.id === "kays-planner-close") return;
+            if (e.target.id === "kays-planner-close") return;
 
-            // Lock current position (prevents snap/jump)
             const rect = popup.getBoundingClientRect();
-            popup.style.left = `${rect.left}px`;
-            popup.style.top = `${rect.top}px`;
-            popup.style.transform = "none";
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
 
             isDragging = true;
-            didDrag = false;
-
-            startX = e.clientX;
-            startY = e.clientY;
-
-            startLeft = rect.left;
-            startTop = rect.top;
-
-            e.preventDefault();
+            document.body.style.userSelect = "none";
         });
 
         document.addEventListener("mousemove", (e) => {
             if (!isDragging) return;
 
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
+            let newLeft = e.clientX - offsetX;
+            let newTop = e.clientY - offsetY;
 
-            // mark that this interaction was a drag (so overlay click won't close it)
-            if (Math.abs(dx) + Math.abs(dy) > 2) didDrag = true;
-
-            let newLeft = startLeft + dx;
-            let newTop = startTop + dy;
-
-            // Keep it on-screen (basic bounds)
             const rect = popup.getBoundingClientRect();
             const maxLeft = window.innerWidth - rect.width;
             const maxTop = window.innerHeight - rect.height;
@@ -113,23 +164,13 @@ if (!document.getElementById("kays-launcher-btn")) {
 
         document.addEventListener("mouseup", () => {
             isDragging = false;
+            document.body.style.userSelect = "auto";
         });
 
-        // Close on X
-        document.getElementById("kays-planner-close").addEventListener("click", () => {
-            overlay.remove();
-        });
-
-        // Close when clicking outside popup (but NOT right after dragging)
-        overlay.addEventListener("click", (e) => {
-            if (didDrag) {
-                didDrag = false; // consume the drag-generated click
-                return;
-            }
-            if (e.target === overlay) overlay.remove();
-        });
+        // Close
+        document.getElementById("kays-planner-close")
+            .addEventListener("click", () => overlay.remove());
     };
 
-    // Open modal on launcher click
     launcherBtn.addEventListener("click", openPlanner);
 }
