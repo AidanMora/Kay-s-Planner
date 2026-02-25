@@ -1,0 +1,17 @@
+Each task should support the following fields:
+
+•Title (required)
+
+•Due date & time (optional)
+
+•Description
+
+◦Free-text notes (e.g., instructions, thoughts)
+
+•Location
+
+◦Address or place name
+
+•Link
+
+◦URL field (e.g., Canvas assignment, Google Doc, Zoom link)
