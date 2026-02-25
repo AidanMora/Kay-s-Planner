@@ -5,10 +5,13 @@
 #kays-planner-popup {
     position: fixed;
     width: 460px;
-    background: white;
+    background: rgba(19, 19, 20);
     border-radius: 14px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     z-index: 99999;
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkgreen;
 }
 
 /* Header */
@@ -19,6 +22,7 @@
     padding: 14px 16px;
     border-bottom: 1px solid rgba(0,0,0,0.08);
     cursor: move;
+    color: white;
     user-select: none;
 }
 
@@ -31,7 +35,7 @@
 /* Close button */
 #kays-planner-close {
     border: none;
-    background: rgba(0,0,0,0.35);
+    background: rgba(19, 19, 20);
     font-size: 18px;
     font-color: red;
     line-height: 1;
@@ -68,13 +72,25 @@
 }
 
 /* Primary button */
-#kays-add-btn {
+#kays-viewTasks-btn {
     padding: 10px 12px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
 }
+
+#kays-taskCreation-btn {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+
+
 #kays-add-btn:hover {
     filter: brightness(0.97);
 }
@@ -147,14 +163,146 @@
     z-index: 99997;
     padding: 10px 12px;
     border-radius: 20px;
-    border: 1px solid rgba(0,0,0,0.15);
-    background: pink;
+    background: rgba(19, 19, 20);
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkgreen;
     cursor: pointer;
     font-weight: 650;
-    color: black;
+    color: white;
     box-shadow: 0 10px 30px rgba(0,0,0,0.18);
 }
+#newTitle {
+    font-size: 16px;
+    font-weight: 650;
+    margin: 0;
+}
 
+#saveTaskBtn {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#backBtn {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
 #kays-launcher-btn:hover {
-    filter: brightness(0.98);
+    effec: brightness(0.98);
+}
+
+
+.kays-section-title {
+    color: white;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+#kays-task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+.kays-task-item {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    transition: background 0.2s ease;
+}
+
+.kays-task-item:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.kays-footer-row {
+    margin-top: 12px;
+}
+
+.kays-secondary-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Section heading */
+.kays-section-title {
+    color: white;
+    margin: 0 0 14px 0;
+    font-weight: 650;
+}
+
+/* List container */
+#kays-task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+/* Task row (card) */
+.kays-task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+/* Left cluster: checkbox + title */
+.kays-task-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0; /* enables ellipsis */
+}
+
+.kays-task-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.kays-task-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Delete button */
+.kays-delete-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+.kays-delete-btn:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* Footer row + back button */
+.kays-footer-row {
+    margin-top: 12px;
+}
+
+.kays-secondary-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
 }
