@@ -1,4 +1,4 @@
-console.log("Kay's Planner loaded.");
+// console.log("Kay's Planner loaded.");
 
 // Optional dev banner
 const banner = document.createElement("div");
@@ -59,6 +59,22 @@ if (!document.getElementById("kays-launcher-btn")) {
             view.innerHTML = `
         <h3 class="kays-section-title">Create Task</h3>
         <input id="newTitle" placeholder="Task title" />
+        <div style="margin-top:10px; display:flex; gap:8px;">
+            <input type="datetime-local" id="dueDate" >
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px;">
+            <textarea id="descriptionBox" name="descriptionBox" rows="5" cols="35" placeholder="Description"> </textarea><br><br>
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px;">
+           <textarea id="freeNotes" name="freeNotes" rows="4" cols="24" placeholder="Notes" ></textarea><br><br>
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px;">
+            <input id="location" placeholder="Location" >
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px;">
+            <input type="url" id="urlField" placeholder="URL">
+        </div>
+        
         <div style="margin-top:10px; display:flex; gap:8px;">
           <button id="saveTaskBtn">Save</button>
           <button id="backBtn">Back</button>
