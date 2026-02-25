@@ -1,0 +1,141 @@
+/* === Kay's Planner Modal Overlay === */
+
+
+/* === Popup Container === */
+#kays-planner-popup {
+    position: fixed;
+    width: 460px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    z-index: 99999;
+}
+
+/* Header */
+#kays-planner-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    cursor: move;
+    user-select: none;
+}
+
+#kays-planner-title {
+    font-size: 16px;
+    font-weight: 650;
+    margin: 0;
+}
+
+/* Close button */
+#kays-planner-close {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+#kays-planner-close:hover {
+    background: rgba(0,0,0,0.06);
+}
+
+/* Body */
+#kays-planner-body {
+    padding: 14px 16px;
+    overflow: auto; /* scroll tasks if long */
+}
+
+/* Input row */
+#kays-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+#kays-task-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid rgba(0,0,0,0.18);
+    border-radius: 10px;
+    outline: none;
+}
+#kays-task-input:focus {
+    border-color: rgba(0,0,0,0.35);
+}
+
+/* Primary button */
+#kays-add-btn {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+#kays-add-btn:hover {
+    filter: brightness(0.97);
+}
+
+/* Task list */
+#kays-task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.kays-task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 10px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.kays-task-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0; /* allow text ellipsis */
+}
+
+.kays-task-checkbox {
+    width: 16px;
+    height: 16px;
+}
+
+.kays-task-title {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kays-task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.kays-small-btn {
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+.kays-small-btn:hover {
+    background: rgba(0,0,0,0.04);
+}
+
+/* Animation */
+@keyframes kaysPopIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+
