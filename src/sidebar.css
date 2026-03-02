@@ -82,6 +82,7 @@
 
 #kays-taskCreation-btn {
     padding: 10px 12px;
+    margin-bottom: 20px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -305,4 +306,44 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
+}
+.kays-task-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Push actions to far right */
+.kays-task-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1; /* THIS is important */
+}
+
+/* Keep edit + delete tight */
+.kays-task-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* control exact spacing */
+}
+
+/* Make buttons compact */
+.kays-edit-btn,
+.kays-delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 4px;
+    margin: 0;
+}
+
+.kays-edit-btn:hover {
+    color: #007bff;
+}
+
+.kays-delete-btn:hover {
+    color: red;
 }
