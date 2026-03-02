@@ -93,9 +93,9 @@ if (!document.getElementById("kays-launcher-btn")) {
             <button id="kays-taskCreation-btn" type="button">Create</button>
 
             <div class="kays-filter-wrap" style="position:relative;">
-              <button id="kays-filter-btn" type="button" style="display:flex; align-items:center; gap:8px;">
+              <button id="kays-filter-btn" type="button" style="width:100px;height:34px;display:flex; align-items:center; gap:8px;margin-bottom:19px;border-radius:10px;border: none;font-weight: 600;">
                 <span style="opacity:.85;">Filter:</span>
-                <span id="kays-filter-dot" style="width:10px;height:10px;border-radius:50%;background:${FILTER_META.all.color};display:inline-block;"></span>
+                <span id="kays-filter-dot" style="width:10px;height:10px;border-radius:50%;background:${FILTER_META.all.color};display:inline-block;padding-left: 5px;"></span>
                 <span id="kays-filter-label">${escapeHtml(FILTER_META.all.label)}</span>
                 <span style="opacity:.85;">▾</span>
               </button>
