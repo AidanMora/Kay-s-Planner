@@ -89,6 +89,10 @@
     font-weight: 600;
 }
 
+#kays-taskCreation-btn:hover {
+    background-color: darkgreen;
+}
+
 
 
 
@@ -125,6 +129,7 @@
     width: 16px;
     height: 16px;
 }
+
 
 .kays-task-title {
     font-size: 14px;
@@ -187,12 +192,20 @@
     font-weight: 600;
 }
 
+#saveTaskBtn:hover {
+    background-color: darkgreen;
+}
+
 #backBtn {
     padding: 10px 12px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
+}
+
+#backBtn:hover {
+    background-color: darkgreen;
 }
 #kays-launcher-btn:hover {
     effec: brightness(0.98);
@@ -282,19 +295,6 @@
     text-overflow: ellipsis;
 }
 
-/* Delete button */
-.kays-delete-btn {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.18);
-    background: transparent;
-    color: white;
-    cursor: pointer;
-}
-.kays-delete-btn:hover {
-    background: rgba(255,255,255,0.12);
-}
 
 /* Footer row + back button */
 .kays-footer-row {
@@ -322,31 +322,26 @@
     flex: 1; /* THIS is important */
 }
 
-/* Keep edit + delete tight */
+
 .kays-task-actions {
     display: flex;
     align-items: center;
-    gap: 4px; /* control exact spacing */
+    gap: 4px;
 }
 
-/* Make buttons compact */
 .kays-edit-btn,
-.kays-delete-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 2px 4px;
-    margin: 0;
+.kays-delete-btn,
+.kays-view-btn{
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 15%;
 }
-
+.kays-view-btn:hover,
+.kays-delete-btn:hover,
 .kays-edit-btn:hover {
-    color: #007bff;
+    background-color: darkgreen;
 }
 
-.kays-delete-btn:hover {
-    color: red;
-}
 
 
 #kays-planner-popup {
@@ -377,12 +372,28 @@
     border: 1px solid #333;
 }
 
-/* Filter dropdown items */
+#kays-filter-btn:hover {
+    background-color: darkgreen;
+}
+
+
 .kays-filter-item {
     background-color: #1e1e1e;
     color: #ffffff;
+    border-color: transparent;
 }
 
 .kays-filter-item:hover {
-    background-color: #2a2a2a;
+    background-color: darkgreen;
 }
+
+#addToCalendar {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 5%;
+}
+
+#addToCalendar:hover {
+    background-color: darkgreen;
+}
+
