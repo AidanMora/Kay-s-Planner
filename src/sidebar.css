@@ -347,3 +347,42 @@
 .kays-delete-btn:hover {
     color: red;
 }
+
+
+#kays-planner-popup {
+    background-color: #1e1e1e;   /* dark background */
+    color: #ffffff;              /* default text color */
+}
+
+/* Ensure everything inside inherits correctly */
+#kays-planner-popup * {
+    color: inherit;
+}
+
+/* Task list text */
+.kays-task-title {
+    color: inherit;
+}
+
+/* View-only details screen */
+.kays-details,
+.kays-details * {
+    color: inherit;
+}
+
+/* Filter dropdown container */
+#kays-filter-menu > div {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #333;
+}
+
+/* Filter dropdown items */
+.kays-filter-item {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.kays-filter-item:hover {
+    background-color: #2a2a2a;
+}
