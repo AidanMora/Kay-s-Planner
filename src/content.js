@@ -93,14 +93,14 @@ if (!document.getElementById("kays-launcher-btn")) {
             <button id="kays-taskCreation-btn" type="button">Create</button>
 
             <div class="kays-filter-wrap" style="position:relative;">
-              <button id="kays-filter-btn" type="button" style="width:100px;height:34px;display:flex; align-items:center; gap:8px;margin-bottom:19px;border-radius:10px;border: none;font-weight: 600;">
+              <button id="kays-filter-btn" type="button" style="width:auto;height:35px;display:flex; align-items:center; gap:8px;margin-bottom:19px;border-radius:10px;border: none;font-weight: 600;">
                 <span style="opacity:.85;">Filter:</span>
                 <span id="kays-filter-dot" style="width:10px;height:10px;border-radius:50%;background:${FILTER_META.all.color};display:inline-block;padding-left: 5px;"></span>
                 <span id="kays-filter-label">${escapeHtml(FILTER_META.all.label)}</span>
                 <span style="opacity:.85;">▾</span>
               </button>
 
-              <div id="kays-filter-menu" style="display:none; position:absolute; left:0; top:calc(100% + 6px); z-index:999999;">
+              <div id="kays-filter-menu" style="display:none; position:absolute; border: none;left:0; top:calc(100% + 6px); z-index:999999;">
                 <div id="kays-filter-menu-inner"></div>
               </div>
             </div>
@@ -331,6 +331,10 @@ if (!document.getElementById("kays-launcher-btn")) {
 
         <div style="margin-top:10px;">
           <input type="url" id="urlField" placeholder="URL" value="${t?.url ? escapeHtml(t.url) : ""}">
+        </div>
+        
+        <div style="margin-top:10px;">
+            <button id="addToCalendar" type="button">Add to Calendar</button>
         </div>
 
         <div style="margin-top:10px; display:flex; gap:8px;">
