@@ -4,7 +4,8 @@
 /* === Popup Container === */
 #kays-planner-popup {
     position: fixed;
-    width: 460px;
+    width: 305px;
+    height: 375px;
     background: rgba(19, 19, 20);
     border-radius: 14px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.25);
@@ -12,6 +13,13 @@
     border-style: solid;
     border-width: 2px;
     border-color: darkgreen;
+    opacity: 95%;
+    resize: both;
+    overflow: auto;
+    min-width: 360px;
+    min-height: 260px;
+    max-width: 90vw;
+    max-height: 90vh;
 }
 
 /* Header */
@@ -27,8 +35,8 @@
 }
 
 #kays-planner-title {
-    font-size: 16px;
-    font-weight: 650;
+    font-size: 13px;
+    font-weight: 600;
     margin: 0;
 }
 
@@ -83,10 +91,13 @@
 #kays-taskCreation-btn {
     padding: 10px 12px;
     margin-bottom: 20px;
-    border: none;
+    border: thin;
+    border-style: solid;
+    border-color: darkgreen;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
+    background: rgba(19, 19, 20);
 }
 
 #kays-taskCreation-btn:hover {
@@ -179,17 +190,21 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.18);
 }
 #newTitle {
-    font-size: 16px;
-    font-weight: 650;
+    font-size: 13px;
+    font-weight: 600;
     margin: 0;
+    width: 155px
 }
 
 #saveTaskBtn {
     padding: 10px 12px;
-    border: none;
+    border: thin;
+    border-style: solid;
+    border-color: darkgreen;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
+    background: rgba(19, 19, 20);
 }
 
 #saveTaskBtn:hover {
@@ -198,10 +213,13 @@
 
 #backBtn {
     padding: 10px 12px;
-    border: none;
+    border: thin;
+    border-style: solid;
+    border-color: darkgreen;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
+    background: rgba(19, 19, 20);
 }
 
 #backBtn:hover {
@@ -229,7 +247,7 @@
     margin-bottom: 8px;
     border-radius: 10px;
     background: rgba(255,255,255,0.08);
-    color: white;
+    color: darkgreen;
     transition: background 0.2s ease;
 }
 
@@ -335,6 +353,7 @@
     background-color: transparent;
     border-color: transparent;
     border-radius: 15%;
+
 }
 .kays-view-btn:hover,
 .kays-delete-btn:hover,
@@ -375,6 +394,17 @@
 #kays-filter-btn:hover {
     background-color: darkgreen;
 }
+#kays-filter-btn {
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: thin;
+    border-style: solid;
+    border-color: darkgreen;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    background: rgba(19, 19, 20);
+}
 
 
 .kays-filter-item {
@@ -395,5 +425,12 @@
 
 #addToCalendar:hover {
     background-color: darkgreen;
+}
+
+#quickTaskInput {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    width: 250px;
 }
 
