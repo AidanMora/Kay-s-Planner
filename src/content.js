@@ -93,7 +93,7 @@ if (!document.getElementById("kays-launcher-btn")) {
             <button id="kays-taskCreation-btn" type="button">Create</button>
 
             <div class="kays-filter-wrap" style="position:relative;">
-              <button id="kays-filter-btn" type="button" style="width:auto;height:35px;display:flex; align-items:center; gap:8px;margin-bottom:19px;border-radius:10px;border: none;font-weight: 600;">
+              <button id="kays-filter-btn" type="button" style="width:auto;height:35px;display:flex; align-items:center; gap:8px;margin-bottom:19px;font-weight: 600;">
                 <span style="opacity:.85;">Filter:</span>
                 <span id="kays-filter-dot" style="width:10px;height:10px;border-radius:50%;background:${FILTER_META.all.color};display:inline-block;padding-left: 5px;"></span>
                 <span id="kays-filter-label">${escapeHtml(FILTER_META.all.label)}</span>
@@ -295,9 +295,13 @@ if (!document.getElementById("kays-launcher-btn")) {
 
             view.innerHTML = `
         <h3 class="kays-section-title">${isEdit ? "Edit Task" : "Create Task"}</h3>
-
-        <input id="newTitle" placeholder="Task title" value="${t ? escapeHtml(t.title) : ""}" />
-
+        
+        <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">Quick Task</label>
+        <input id="quickTaskInput" placeholder="Quick Task: e.g. Doctors appointment @2:00pm March 2">
+        <div style="margin-top:10px;">
+            <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">Task Title</label>
+            <input id="newTitle" placeholder="Task title" value="${t ? escapeHtml(t.title) : ""}" />
+        </div>
         <div style="margin-top:10px;">
           <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">Category / Color</label>
           <div style="display:flex;align-items:center;gap:10px;">
@@ -312,24 +316,29 @@ if (!document.getElementById("kays-launcher-btn")) {
         </div>
 
         <div style="margin-top:10px;">
+            <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">DateTime</label>
           <input type="datetime-local" id="dueDate" value="${t?.due ? escapeHtml(t.due) : ""}">
         </div>
 
         <div style="margin-top:10px;">
+          <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">Description</label>
           <textarea id="descriptionBox" rows="5" placeholder="Description">${t?.description ? escapeHtml(
                 t.description
             ) : ""}</textarea>
         </div>
 
         <div style="margin-top:10px;">
+          <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">Notes</label>
           <textarea id="freeNotes" rows="4" placeholder="Notes">${t?.notes ? escapeHtml(t.notes) : ""}</textarea>
         </div>
 
         <div style="margin-top:10px;">
+          <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">Location</label>
           <input id="location" placeholder="Location" value="${t?.location ? escapeHtml(t.location) : ""}">
         </div>
 
         <div style="margin-top:10px;">
+          <label style="display:block;font-size:12px;opacity:.75;margin-bottom:4px;">URL</label>
           <input type="url" id="urlField" placeholder="URL" value="${t?.url ? escapeHtml(t.url) : ""}">
         </div>
         
